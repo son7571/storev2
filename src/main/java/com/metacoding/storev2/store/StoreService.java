@@ -9,6 +9,5 @@ import org.springframework.stereotype.Service;
 public class StoreService {
     @Autowired
     private StoreRepository storeRepository;
-
 }
 

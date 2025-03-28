@@ -13,6 +13,4 @@ public class StoreRepository {
     public StoreRepository(EntityManager em) {
         this.em = em;
     }
-
-
 }
