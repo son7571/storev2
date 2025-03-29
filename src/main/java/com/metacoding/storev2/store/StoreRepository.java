@@ -29,9 +29,19 @@ public class StoreRepository {
         return query.getResultList();
     }
 
-    public Store findByID(int id) {
+    public Store findById(int id) {
         Query query = em.createNativeQuery("select * from store_tb where id = ?", Store.class);
         query.setParameter(1, id);
-        return (Store) query.getSingleResult();
+        try {
+            return (Store) query.getSingleResult();
+        } catch (Exception e) { // NoResultException
+            return null;
+        }
+    }
+
+    public void deleteById(int id) {
+        Query query = em.createNativeQuery("delete from store_tb where id = ?");
+        query.setParameter(1, id);
+        query.executeUpdate();
     }
 }
