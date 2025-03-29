@@ -50,7 +50,7 @@ public class StoreController {
         return "redirect:/";
     }
 
-    @GetMapping("/store/{id}/update-form")
+    @GetMapping("store/{id}/update-form")
     public String updateForm(@PathVariable("id") int id, HttpServletRequest request) {
         request.setAttribute("model", storeService.상세보기(id));
         return "store/update-form";
