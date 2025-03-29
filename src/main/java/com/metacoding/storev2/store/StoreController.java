@@ -1,9 +1,12 @@
 package com.metacoding.storev2.store;
 
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 
 @Controller
@@ -15,7 +18,9 @@ public class StoreController {
     }
 
     @GetMapping("/")
-    public String list() {
+    public String list(HttpServletRequest request) {
+        List<Store> storeList = storeService.상품목록();
+        request.setAttribute("models", storeList);
         return "store/list";
     }
 
