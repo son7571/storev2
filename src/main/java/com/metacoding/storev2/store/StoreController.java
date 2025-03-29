@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -46,6 +47,19 @@ public class StoreController {
     @PostMapping("store/{id}/delete")
     public String delete(@PathVariable("id") int id) {
         storeService.상품삭제(id);
+        return "redirect:/";
+    }
+
+    @GetMapping("/store/{id}/update-form")
+    public String updateForm(@PathVariable("id") int id, HttpServletRequest request) {
+        request.setAttribute("model", storeService.상세보기(id));
+        return "store/update-form";
+    }
+
+    @PostMapping("store/{id}/update")
+    public String update(@PathVariable("id") int id, @RequestParam("name") String name,
+                         @RequestParam("stock") int stock, @RequestParam("price") int price) {
+        storeService.상품수정(id, name, stock, price);
         return "redirect:/";
     }
 }

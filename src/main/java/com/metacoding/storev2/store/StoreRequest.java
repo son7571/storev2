@@ -10,4 +10,5 @@ public class StoreRequest {
         private Integer stock;
         private Integer price;
     }
+
 }
