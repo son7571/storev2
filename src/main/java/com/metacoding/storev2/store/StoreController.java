@@ -4,6 +4,7 @@ package com.metacoding.storev2.store;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -33,6 +34,13 @@ public class StoreController {
     public String save(StoreRequest.saveDTO saveDTO) {
         storeService.상품등록(saveDTO);
         return "redirect:/";
+    }
+
+    @GetMapping("store/{id}")
+    public String detail(@PathVariable("id") int id, HttpServletRequest request) {
+        Store store = storeService.상세보기(id);
+        request.setAttribute("model", store);
+        return "store/detail";
     }
 }
 
